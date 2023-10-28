@@ -43,8 +43,22 @@ function refresh() {
   }
   load();
 }
+
+function getFirstDay(month,year) {
+  const firstDay = new Date(year, month, 1);
+  const dayOfWeek = firstDay.getDay();
+  return dayOfWeek;
+}
+
 function load() {
   let days = getDays(currMonthno,currYear);
+  //get the first day of the month
+  let firstDay = getFirstDay(currMonthno,currYear);
+  for (let i = 0; i < firstDay; i++) {
+    let div = document.createElement("div");
+    div.className = "empty";
+    document.getElementById("calendar").appendChild(div);
+  }
   // Creating the days boxes
   for (let i = 0; i < days; i++) {
     let div = document.createElement("div");
