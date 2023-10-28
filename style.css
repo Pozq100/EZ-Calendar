@@ -1,4 +1,6 @@
 body {
+    background-image: url("./images/bodyBG.jpg");
+    background-size: cover;
     justify-content: center;
     margin-top: 100px;
     display: flex;
@@ -16,6 +18,8 @@ body {
 }
 
 #prev,#next {
+    background-color: cyan;
+    color: #1F1FFF;
     cursor: pointer;
     border: 1px solid blue;
     border-radius: 5px;
@@ -23,7 +27,7 @@ body {
     height: 30px;
 }
 #header {
-    color: red;
+    color: #1A1AC1;
     display: flex;
     font-size: 30px;
     margin-bottom: 10px;
@@ -38,7 +42,7 @@ body {
 }
 
 #weekdays div {
-    color: blue;
+    color: #1F1FFF;
     font-size: 20px;
     width: 100px;
     padding: 8px;
@@ -60,6 +64,7 @@ body {
 }
 
 .day {
+    cursor: pointer;
     color: white;
     border: 1px solid black;
     text-align: left;
@@ -70,5 +75,11 @@ body {
     margin: 7px;
     border-radius: 10px;
     box-sizing: border-box;
-    background: url("./images/daysBG.jpg");
+    background-image: url("./images/daysBG.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.day:hover {
+    box-shadow: 3px 8px 20px rgba(89, 18, 139, 0.4);
 }

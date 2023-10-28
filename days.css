@@ -1,0 +1,93 @@
+body {
+    background-image: url("./images/bodyBG.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    margin-top: 100px;
+    display: flex;
+}
+#back {
+    position: absolute;
+    left: 100px;
+    top: 50px;
+    height: 30px;
+    width: 60px;
+    border-radius: 10px;
+    background-color: cyan;
+    color: #1F1FFF;
+}
+
+#header {
+    color: #1A1AC1;
+    display: flex;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#date {
+    color: #1A1AC1;
+    display: flex;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+#container {
+    width: 1200px;
+    text-align: left;
+    margin: 0 auto;
+}
+#hours {
+    border-radius: 10px;
+    display: flex;
+    text-align: center;
+    flex-wrap: flex;
+}
+
+.empty {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.eachHour {
+    border: 1px solid black;
+    color: #1F1FFF;
+    border-radius: 10px;
+    height: auto;
+    font-size: auto;
+    width: 50px;
+    padding: 8px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#emptyboxes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#addEvent {
+    background-image: url("./images/eventBG.png");
+    background-size: cover;
+    position: relative;
+    background-color: cyan;
+    color: #1F1FFF;
+    cursor: pointer;
+    border: 1px solid blue;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    right: 30px;
+}
+
+#addEvent:hover {
+    box-shadow:  3px 8px 20px rgba(89, 18, 139, 0.4);
+}

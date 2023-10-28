@@ -50,6 +50,7 @@ function getFirstDay(month,year) {
   return dayOfWeek;
 }
 
+//Loads the page
 function load() {
   let days = getDays(currMonthno,currYear);
   //get the first day of the month
@@ -63,6 +64,7 @@ function load() {
   for (let i = 0; i < days; i++) {
     let div = document.createElement("div");
     div.className = "day";
+    div.addEventListener('click', expandDay);
     let currDay = document.createTextNode(i+1);
     div.appendChild(currDay);
     document.getElementById("calendar").appendChild(div);
@@ -70,6 +72,17 @@ function load() {
   // Changing the Header to the current Month and Year
   setHeader(currMonthno,currYear);
 
+}
+
+// Goes to the selected day page
+function expandDay() {
+  const date = {
+    year: currYear,
+    month: currMonthno,
+    day: this.textContent
+  };
+  const data = `?year=${date.year}&month=${date.month}&day=${date.day}`;
+  window.location.href = "days.html" + data;
 }
 
 load();
