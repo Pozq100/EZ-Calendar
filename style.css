@@ -6,28 +6,47 @@ body {
 
 #container {
     width: 800px;
-    text-align: center;
+    text-align: right;
+}
+
+#row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#prev,#next {
+    cursor: pointer;
+    border: 1px solid blue;
+    border-radius: 5px;
+    width: 50px;
+    height: 30px;
 }
 #header {
     color: red;
     display: flex;
     font-size: 30px;
-    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 #weekdays {
+    border: 1px solid black;
+    border-radius: 10px;
     display: flex;
+    text-align: center;
     justify-content: space-between;
 }
 
 #weekdays div {
     color: blue;
-    font-size: 17px;
+    font-size: 20px;
     width: 100px;
-    padding: 5px;
+    padding: 8px;
 }
 
 #calendar {
+    border-radius: 10px;
+    border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
 }

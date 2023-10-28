@@ -14,6 +14,35 @@ function setHeader(month, year) {
   let currMonth = monthNames[month];
   document.getElementById("header").textContent = currMonth + " " + year;
 }
+
+function nextMonth() {
+  currMonthno += 1;
+  if (currMonthno > 11)
+  {
+    currMonthno = 0;
+    currYear += 1;
+  }
+  refresh();  
+}
+
+function prevMonth() {
+  currMonthno -= 1;
+  if (currMonthno < 0)
+  {
+    currMonthno = 11;
+    currYear -= 1;
+  }
+  refresh();
+}
+
+function refresh() {
+  let cal = document.getElementById("calendar");
+  while (cal.hasChildNodes())
+  {
+    cal.removeChild(cal.children[0]);
+  }
+  load();
+}
 function load() {
   let days = getDays(currMonthno,currYear);
   // Creating the days boxes
