@@ -7,6 +7,7 @@ const dateData = getQueryParameters();
 const year = dateData.year;
 const month = monthNames[dateData.month];
 const day = dateData.day;
+let selectedEvent;
 
 function getQueryParameters() {
     const queryString = window.location.search;
@@ -58,8 +59,9 @@ function createEvent(task,time_needed) {
         let div = document.createElement("div");
         div.className = "event";
         div.textContent = task;
-        div.addEventListener('mousedown', (e) => {
-            makeDraggable(div);
+        div.draggable = true;
+        div.addEventListener("dragstart", function(e){
+            selectedEvent = e.target;
         });
         let w = time_needed * 50;
         div.style = `width: ${w}px`;
@@ -67,62 +69,39 @@ function createEvent(task,time_needed) {
     }
 }
 
-function makeDraggable(element) {
-    let isDragging = false;
-    let offsetX, offsetY;
-    let currentX, currentY;
-
-    element.style.cursor = 'grab';
-
-    element.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        offsetX = e.clientX - element.getBoundingClientRect().left;
-        offsetY = e.clientY - element.getBoundingClientRect().top;
-        currentX = element.getBoundingClientRect().left;
-        currentY = element.getBoundingClientRect().top;
-        element.style.cursor = 'grabbing';
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-
-        const x = e.clientX - offsetX;
-        const y = e.clientY - offsetY;
-
-        // Calculate the new position relative to the current position
-        const translateX = x - currentX;
-        const translateY = y - currentY;
-
-        element.style.transform = `translate(${translateX}px, ${translateY}px)`;
-    });
-
-    document.addEventListener('mouseup', () => {
-        if (isDragging) {
-            isDragging = false;
-            element.style.cursor = 'grab';
-        }
-    });
-}
-
 function load() {
     document.getElementById("header").textContent = day + findOrdinal(day) + " " + month + " " + year;
-    for (let i = 0; i < 24;i ++) 
-    {
+    for (let i = 0; i < 24; i++) {
         let div = document.createElement("div");
         div.className = "eachHour";
-        let time = document.createTextNode(i +":00");
+        let time = document.createTextNode(i + ":00");
         div.appendChild(time);
         document.getElementById("hours").appendChild(div);
     }
-    for (let i = 0;i < 6; i ++)
-    {
-        for (let j = 0;j < 24; j ++)
-        {
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 24; j++) {
             let div = document.createElement("div");
             div.className = "empty";
             document.getElementById("emptyboxes").appendChild(div);
         }
     }
+    // Reference https://www.youtube.com/watch?v=vJn5_SytV_U&t=1s
+    const emptyboxes = document.querySelectorAll(".empty");
+    emptyboxes.forEach((box) => {
+        box.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            box.classList.add("hovered");
+        });
+        box.addEventListener("dragleave", () => {
+            box.classList.remove("hovered");
+        });
+        box.addEventListener("drop", (e) => {
+            box.appendChild(selectedEvent);
+            selectedEvent = null;
+            box.classList.remove("hovered");
+        });
+    });
+
 }
 
 load()

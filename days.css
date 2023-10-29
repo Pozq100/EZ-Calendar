@@ -35,14 +35,16 @@ body {
     text-align: left;
     margin: 0 auto;
 }
+
 #hours {
     border-radius: 10px;
     display: flex;
     text-align: center;
-    flex-wrap: flex;
+    flex-wrap: wrap;
 }
 
 .empty {
+    position: relative;
     border: 1px solid black;
     border-radius: 10px;
     width: 50px;
@@ -51,12 +53,26 @@ body {
     text-align: center;
     box-sizing: border-box;
 }
+
+.event {
+    position: absolute;
+    border: 1px solid black;
+    background-image: url("./images/newEventBG.jpg");
+    background-size: cover;
+    cursor: grab;
+    border-radius: 10px;
+    height: 50px;
+    text-align: center;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
 .eachHour {
     border: 1px solid black;
     color: #1F1FFF;
     border-radius: 10px;
     height: auto;
-    font-size: auto;
     width: 50px;
     padding: 8px;
     text-align: center;
@@ -72,6 +88,10 @@ body {
 #emptyboxes {
     display: flex;
     flex-wrap: wrap;
+}
+.empty.hovered {
+    border: 1px solid gold;
+    box-shadow: 3px 5px 20px gold;
 }
 
 #addEvent {
@@ -99,16 +119,4 @@ body {
     border: 1px solid black;
     height: 100px;
     width: 800px;
-}
-
-.event {
-    border: 1px solid black;
-    background-image: url("./images/newEventBG.jpg");
-    background-size: cover;
-    cursor: grab;
-    border-radius: 10px;
-    height: 50px;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 20px;
 }
