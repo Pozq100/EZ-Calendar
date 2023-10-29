@@ -41,6 +41,69 @@ function back() {
     history.back();
 }
 
+function saveData() {
+    const e = document.getElementById("event").value;
+    const t = document.getElementById("time").value;
+    $("#inputModal").modal("hide");
+    document.getElementById("event").value = "";
+    document.getElementById("time").value = "";
+    createEvent(e,t);
+}
+
+function createEvent(task,time_needed) {
+    if (time_needed > 24 || time_needed <= 0) {
+        alert("Invalid input, please enter a time interval of 1-24");
+    }
+    else {
+        let div = document.createElement("div");
+        div.className = "event";
+        div.textContent = task;
+        div.addEventListener('mousedown', (e) => {
+            makeDraggable(div);
+        });
+        let w = time_needed * 50;
+        div.style = `width: ${w}px`;
+        document.getElementById("eventHolder").appendChild(div)
+    }
+}
+
+function makeDraggable(element) {
+    let isDragging = false;
+    let offsetX, offsetY;
+    let currentX, currentY;
+
+    element.style.cursor = 'grab';
+
+    element.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - element.getBoundingClientRect().left;
+        offsetY = e.clientY - element.getBoundingClientRect().top;
+        currentX = element.getBoundingClientRect().left;
+        currentY = element.getBoundingClientRect().top;
+        element.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        const x = e.clientX - offsetX;
+        const y = e.clientY - offsetY;
+
+        // Calculate the new position relative to the current position
+        const translateX = x - currentX;
+        const translateY = y - currentY;
+
+        element.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            element.style.cursor = 'grab';
+        }
+    });
+}
+
 function load() {
     document.getElementById("header").textContent = day + findOrdinal(day) + " " + month + " " + year;
     for (let i = 0; i < 24;i ++) 
