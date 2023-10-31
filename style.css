@@ -2,7 +2,7 @@ body {
     background-image: url("./images/bodyBG.jpg");
     background-size: cover;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 25px;
     display: flex;
 }
 
@@ -91,6 +91,7 @@ body {
     background-image: url("./images/newEventBG.jpg");
     background-size: cover;
     text-align: center;
+    overflow: hidden;
 }
 .eventContainer {
     position: relative;

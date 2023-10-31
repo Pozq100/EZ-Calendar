@@ -75,14 +75,13 @@ function load() {
 
   // add the corresponding events
   const dateData = getQueryParameters();
-  if(dateData)
+  if(dateData !== null)
   {
     const day = dateData.day;
     const month = dateData.month;
     const year = dateData.year;
     const events = dateData.allEvents;
     let day_event = document.getElementById(day+month+year);
-    console.log(day+month+year);
     let event_container = document.createElement("div");
     event_container.className = "eventContainer";
     day_event.appendChild(event_container);
@@ -109,6 +108,14 @@ function getQueryParameters() {
 
 // Goes to the selected day page
 function expandDay() {
+  const children = this.children;
+
+  for (let i = children.length - 1; i >= 0; i--) {
+    const child = children[i];
+    if (child.classList.contains("eventContainer")) {
+      this.removeChild(child);
+    }
+  }
   const date = {
     year: currYear,
     month: currMonthno,

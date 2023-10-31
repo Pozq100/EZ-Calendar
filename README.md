@@ -23,3 +23,10 @@ How it works:
     The data transfer between each html file is received through URL Parameters;
   </li>
 </ol>
+
+Limitations:
+<ol>
+ <li>
+    As of right now the state of the days.html does not remain after returning.
+ </li>
+</ol>
