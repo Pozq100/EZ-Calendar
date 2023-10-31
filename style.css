@@ -83,3 +83,18 @@ body {
 .day:hover {
     box-shadow: 3px 8px 20px rgba(89, 18, 139, 0.4);
 }
+
+.event {
+    border: 1px solid black;
+    border-radius: 20px;
+    z-index: 1px;
+    background-image: url("./images/newEventBG.jpg");
+    background-size: cover;
+    text-align: center;
+}
+.eventContainer {
+    position: relative;
+    flex-wrap: wrap;
+    z-index: 1px;
+    right: 2px;
+}

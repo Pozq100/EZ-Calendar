@@ -8,6 +8,8 @@ const year = dateData.year;
 const month = monthNames[dateData.month];
 const day = dateData.day;
 let selectedEvent;
+let allEvents = [];
+
 
 function getQueryParameters() {
     const queryString = window.location.search;
@@ -39,7 +41,8 @@ function findOrdinal(day) {
 }
 
 function back() {
-    history.back();
+    const data = `?day=${day}&month=${dateData.month}&year=${year}&events=${JSON.stringify(allEvents)}`;
+    window.location.href = "index.html" + data;
 }
 
 function saveData() {
@@ -66,6 +69,7 @@ function createEvent(task,time_needed) {
         let w = time_needed * 50;
         div.style = `width: ${w}px`;
         document.getElementById("eventHolder").appendChild(div)
+        allEvents.push(task);
     }
 }
 

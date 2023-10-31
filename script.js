@@ -66,12 +66,45 @@ function load() {
     div.className = "day";
     div.addEventListener('click', expandDay);
     let currDay = document.createTextNode(i+1);
+    div.id = `${i+1}${currMonthno}${currYear}`;
     div.appendChild(currDay);
     document.getElementById("calendar").appendChild(div);
   }
   // Changing the Header to the current Month and Year
   setHeader(currMonthno,currYear);
 
+  // add the corresponding events
+  const dateData = getQueryParameters();
+  if(dateData)
+  {
+    const day = dateData.day;
+    const month = dateData.month;
+    const year = dateData.year;
+    const events = dateData.allEvents;
+    let day_event = document.getElementById(day+month+year);
+    console.log(day+month+year);
+    let event_container = document.createElement("div");
+    event_container.className = "eventContainer";
+    day_event.appendChild(event_container);
+    for (let i = 0; i < events.length;i++) {
+      let div = document.createElement("div");
+      div.className = "event";
+      div.textContent = events[i];
+      event_container.appendChild(div);
+    }
+  } 
+}
+
+// Get the necessary data to display the events
+function getQueryParameters() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const day = urlParams.get("day");
+  const month = urlParams.get("month");
+  const year = urlParams.get("year");
+  const allEventsString = urlParams.get("events");
+  const allEvents = JSON.parse(allEventsString);
+  return { day, month, year, allEvents };
 }
 
 // Goes to the selected day page
